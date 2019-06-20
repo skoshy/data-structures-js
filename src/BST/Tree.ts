@@ -9,17 +9,37 @@ export class Tree<T> {
 
   setRootNode = (rootVal: T) => (this.root = new Node(rootVal));
 
-  add = (newVal: T) => {
-    if (this.root === undefined) return this.setRootNode(newVal);
+  add = (newVal: T): void => {
+    if (this.root === undefined) return this.setRootNode(newVal) && undefined;
 
-    let node = this.root;
-    while (true) {
-      let nodeSide: NodeTypes['Side'] = newVal >= node.val ? 'right' : 'left';
+    let node: NodeTypes<T>['LeftOrRight'] = this.root;
+    while (node) {
+      let nodeSide: NodeTypes<T>['Side'] =
+        newVal >= node.val ? 'right' : 'left';
 
       if (node[nodeSide] === undefined) {
         node.setSide(nodeSide, newVal);
         break;
       }
+
+      node = node[nodeSide];
     }
   };
+
+  // exists = (val: T): boolean => {
+  //   if (this.root === undefined) return false;
+
+  //   let node = this.root;
+  //   while (true) {
+  //     if (node.val === val) return true;
+
+  //     let nodeSide: NodeTypes['Side'] = val >= node.val ? 'right' : 'left';
+  //     if (node[nodeSide] === undefined) {
+  //       node.setSide(nodeSide, newVal);
+  //       break;
+  //     }
+  //   }
+
+  //   return false;
+  // };
 }

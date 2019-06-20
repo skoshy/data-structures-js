@@ -1,11 +1,12 @@
-export type NodeTypes = {
+export type NodeTypes<T> = {
   Side: 'left' | 'right';
+  LeftOrRight: Node<T> | undefined;
 };
 
 export class Node<T> {
   public val: T;
-  public left: Node<T> | undefined;
-  public right: Node<T> | undefined;
+  public left: NodeTypes<T>['LeftOrRight'];
+  public right: NodeTypes<T>['LeftOrRight'];
 
   constructor(initialVal: any) {
     this.val = initialVal;
@@ -13,7 +14,7 @@ export class Node<T> {
     this.right = undefined;
   }
 
-  setSide = (side: NodeTypes['Side'], val: T) => {
+  setSide = (side: NodeTypes<T>['Side'], val: T) => {
     this[side] = new Node(val);
   };
 }
