@@ -1,4 +1,4 @@
-import { Node, NodeTypes } from "./Node";
+import { Node, NodeTypes } from './Node';
 
 export class Tree<T> {
   public root: Node<T>;
@@ -14,7 +14,7 @@ export class Tree<T> {
 
     let node = this.root;
     while (true) {
-      let nodeSide: NodeTypes["Side"] = newVal >= node.val ? "right" : "left";
+      let nodeSide: NodeTypes['Side'] = newVal >= node.val ? 'right' : 'left';
 
       if (node[nodeSide] === undefined) {
         node.setSide(nodeSide, newVal);

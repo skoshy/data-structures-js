@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/skoshy/data-structures-js#readme",
   "devDependencies": {
+    "prettier": "1.18.2",
     "typescript": "^3.5.2"
   }
 }
